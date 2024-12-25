@@ -1,7 +1,10 @@
 /** uncomment one of these **/
 // import OpenAI from "openai" 
 import { HfInference } from '@huggingface/inference'
-const hfInference = new HfInference('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');
+import dotenv from 'dotenv';
+dotenv.config();
+
+const hfInference = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 let isOpen = false;
 

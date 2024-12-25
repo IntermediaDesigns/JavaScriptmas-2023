@@ -1,12 +1,13 @@
 /** uncomment one of these **/
 // import OpenAI from "openai"
-import { HfInference } from '@huggingface/inference';
+import { HfInference } from "@huggingface/inference";
 
-const dialogModal = document.getElementById('dialog-modal');
-const imageContainer = document.getElementById('image-container');
-const form = document.getElementById('formContainer');
+const dialogModal = document.getElementById("dialog-modal");
+const imageContainer = document.getElementById("image-container");
+const form = document.getElementById("formContainer");
+dotenv.config();
 
-const hf = new HfInference("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");
+const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 /** show dialog on load **/
 dialogModal.show();
@@ -14,52 +15,51 @@ dialogModal.show();
 async function submitButton(event) {
   event.preventDefault();
 
-  dialogModal.close(); 
+  dialogModal.close();
 
-  const prompt = document.getElementById('user-input').value;
-  
-  const loadingIndicator = document.createElement('div');
-  loadingIndicator.className = 'loading-indicator';
-  loadingIndicator.textContent = '...Loading Image';
+  const prompt = document.getElementById("user-input").value;
+
+  const loadingIndicator = document.createElement("div");
+  loadingIndicator.className = "loading-indicator";
+  loadingIndicator.textContent = "...Loading Image";
   imageContainer.appendChild(loadingIndicator);
 
   try {
     const response = await hf.textToImage({
-      model: 'stabilityai/stable-diffusion-2',
+      model: "stabilityai/stable-diffusion-2",
       inputs: prompt,
       parameters: {
-        negative_prompt: 'blurry',
+        negative_prompt: "blurry",
       },
     });
 
     const imageUrl = await blobToBase64(response);
 
     imageContainer.removeChild(loadingIndicator);
-    imageContainer.querySelector('img').src = imageUrl;
+    imageContainer.querySelector("img").src = imageUrl;
 
     // Show the regenerate button after the image is generated
-    document.getElementById('regenerate-button').style.display = 'block';
-
+    document.getElementById("regenerate-button").style.display = "block";
   } catch (error) {
-    console.error('Error generating image:', error);
+    console.error("Error generating image:", error);
   }
 }
 
-const regenerateButton = document.getElementById('regenerate-button');
-regenerateButton.addEventListener('click', regeneratePrompt);
+const regenerateButton = document.getElementById("regenerate-button");
+regenerateButton.addEventListener("click", regeneratePrompt);
 
 function regeneratePrompt() {
   // Clear the previous input
-  document.getElementById('user-input').value = '';
+  document.getElementById("user-input").value = "";
 
   // Hide the regenerate button
-  document.getElementById('regenerate-button').style.display = 'none';
+  document.getElementById("regenerate-button").style.display = "none";
 
   // Show the dialog modal
   dialogModal.show();
 }
 
-form.addEventListener('submit', submitButton); 
+form.addEventListener("submit", submitButton);
 
 async function blobToBase64(blob) {
   return new Promise((resolve, reject) => {
@@ -70,17 +70,14 @@ async function blobToBase64(blob) {
   });
 }
 
-
-
 /**
  * 🎄 Challenge:
- * 1. When a user hits submit, dialogModal 
+ * 1. When a user hits submit, dialogModal
  *    should be hidden.
- * 2. Use the inputted text to generate an image 
- *    for the e-card using an AI model. 
+ * 2. Use the inputted text to generate an image
+ *    for the e-card using an AI model.
  *    ⚠️ Make sure the image is square.
  * 3. Render the image to imageContainer.
- * 
+ *
  * 🎁 hint.md for help!
- **/   
-
+ **/
