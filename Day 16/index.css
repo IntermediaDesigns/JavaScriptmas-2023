@@ -1,0 +1,120 @@
+:root {
+  --wine-red: #C7375F;
+  --bright-red: #D42D2F;
+  --dark-green: #344D2F;
+  --light-green: #77A047;
+  --gold: #FAC57D;
+  --snow: #F0F4F7;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: var(--dark-green);
+    background-color: var(--snow);
+}
+
+h1 { 
+    color: var(--dark-green);
+}
+
+
+.container,
+.list {
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+}
+
+.list {
+    display: flex;
+    margin: 0 1em 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 200px;
+    max-width: 320px;
+    min-height: 300px;
+    max-height: auto;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    color: var(--snow);
+    text-align: center;
+    list-style-type: none;
+}
+
+.nice-list {
+    background: var(--dark-green);    
+}
+
+#nice-list, #naughty-list {
+    font-size: 18px;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.naughty-list {
+    background: var(--wine-red);
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+    border: none;
+    font-size: .8rem;
+    background-color: var(--gold);    
+    color: var(--dark-green);
+    font-weight: 400;
+    border-radius: 999px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    height: auto;
+    width: 90px;
+    margin-top: 10px;
+}
+
+#add-btn, #sort-btn {
+    padding: 1em;
+    border: none;
+    font-size: .8rem;
+    background-color: var(--gold);    
+    color: var(--dark-green);
+    font-weight: 400;
+    border-radius: 999px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    height: auto;
+    width: 90px;
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.03)
+}
+
+.btnContainer{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    
+}
+
+.addContainer{
+    display: flex;
+    gap: 10px;
+}
+
+.delete-emoji{
+    font-size: 10px;
+}

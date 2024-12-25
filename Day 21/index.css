@@ -1,0 +1,44 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://www.canyoucompute.co.uk/uploads/1/4/2/4/14249012/4470938_orig.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+:root {
+    --search-border: #bbb;
+    --search-focus-border: #3a71ca;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.search-bar {
+    width: 33.33%;
+    border: 1px solid var(--search-border);
+    padding: 10px;
+    transition: width 0.3s ease-in-out;
+    outline: none;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 5px;
+}
+
+.search-bar:focus {
+    width: 100%;
+    border-color: var(--search-focus-border);
+}
+
+.search-bar:focus::placeholder {
+    color: transparent;
+}
+
+
+
